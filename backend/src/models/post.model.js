@@ -10,6 +10,7 @@ const postSchema = new mongoose.Schema(
     content: {
       type: String,
       maxLength: 350,
+      required: true,
     },
     image: {
       type: String,
@@ -24,7 +25,7 @@ const postSchema = new mongoose.Schema(
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "Comment",
       },
     ],
   },
