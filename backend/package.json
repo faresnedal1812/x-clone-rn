@@ -14,6 +14,7 @@
   "dependencies": {
     "@arcjet/inspect": "^1.1.0",
     "@arcjet/node": "^1.1.0",
+    "@clerk/express": "^1.7.70",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
