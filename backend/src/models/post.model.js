@@ -10,7 +10,6 @@ const postSchema = new mongoose.Schema(
     content: {
       type: String,
       maxLength: 350,
-      required: true,
     },
     image: {
       type: String,
@@ -29,8 +28,18 @@ const postSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+  },
 );
+
+postSchema.pre("validate", function (next) {
+  if (!this.content && !this.image) {
+    next(new Error("Post must have either content or image"));
+  } else {
+    next();
+  }
+});
 
 const Post = mongoose.model("Post", postSchema);
 
