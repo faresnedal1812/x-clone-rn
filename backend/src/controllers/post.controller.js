@@ -136,9 +136,9 @@ export const likePost = asyncHandler(async (req, res) => {
     }
   }
 
-  res
-    .status(200)
-    .json(isLiked ? "Post unliked successfully" : "Post liked successfully");
+  res.status(200).json({
+    message: isLiked ? "Post unliked successfully" : "Post liked successfully",
+  });
 });
 
 export const deletePost = asyncHandler(async (req, res) => {

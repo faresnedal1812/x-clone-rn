@@ -5,7 +5,7 @@ const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
   // uploading should pass if file type is image/png, image/jpeg or ...
-  if (file.memetype.startsWith("image/")) {
+  if (file.mimetype.startsWith("image/")) {
     cb(null, true); // there is no error and uploading must pass
   } else {
     cb(new Error("Only image files are allowed"), false);
