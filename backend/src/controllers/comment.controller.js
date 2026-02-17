@@ -20,7 +20,7 @@ export const createPostComment = asyncHandler(async (req, res) => {
   const { postId } = req.params;
   const { content } = req.body;
 
-  if (!content || content.trim === "")
+  if (!content || content.trim() === "")
     return res.status(400).json({ error: "Comment content is required" });
 
   const user = await User.findOne({ clerkId: userId });
@@ -42,8 +42,8 @@ export const createPostComment = asyncHandler(async (req, res) => {
 
   if (post.user.toString() !== user._id.toString()) {
     await Notification.create({
-      from: post.user,
-      to: user._id,
+      from: user._id,
+      to: post.user,
       type: "comment",
       post: post._id,
       comment: newComment._id,
@@ -59,13 +59,13 @@ export const deletePostComment = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ clerkId: userId });
   const comment = await Comment.findById(commentId);
-  const post = await Post.findOne({ user: user._id });
+  const post = await Post.findById(comment.post);
 
   if (!user || !comment || !post)
     return res.status(404).json({ error: "User or Post or Comment not found" });
 
   if (
-    comment.user.toString() !== user._id.toString() ||
+    comment.user.toString() !== user._id.toString() &&
     post.user.toString() !== user._id.toString()
   )
     return res.status(403).json({
@@ -81,5 +81,5 @@ export const deletePostComment = asyncHandler(async (req, res) => {
   // remove related notifications
   await Notification.deleteMany({ comment: commentId });
 
-  res.status(200).json({ error: "Comment deleted successfully" });
+  res.status(200).json({ message: "Comment deleted successfully" });
 });
