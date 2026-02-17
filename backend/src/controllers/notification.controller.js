@@ -4,7 +4,12 @@ import Notification from "../models/notification.model.js";
 import User from "../models/user.model.js";
 
 export const getNotifications = asyncHandeler(async (req, res) => {
-  const notifications = await Notification.find({})
+  const { userId } = getAuth(req);
+
+  const user = await User.findOne({ clerkId: userId });
+  if (!user) return res.status(404).json({ error: "User not found" });
+
+  const notifications = await Notification.find({ user: user._id })
     .sort({ ceratedAt: -1 })
     .populate("user", "username firstName lastName profilePicture")
     .populate("post", "content image")
