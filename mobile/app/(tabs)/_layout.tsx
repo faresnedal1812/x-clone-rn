@@ -6,8 +6,9 @@ import { useAuth } from "@clerk/clerk-expo";
 const TabsLayout = () => {
   const insets = useSafeAreaInsets();
 
-  const { isSignedIn } = useAuth();
+  const { isSignedIn, isLoaded } = useAuth();
 
+  if (!isLoaded) return null;
   if (!isSignedIn) return <Redirect href={"/(auth)"} />;
   return (
     <Tabs
@@ -28,6 +29,7 @@ const TabsLayout = () => {
         name="index"
         options={{
           title: "",
+          tabBarAccessibilityLabel: "Home",
           tabBarIcon: ({ color, size }) => (
             <Feather name="home" size={size} color={color} />
           ),
@@ -37,6 +39,7 @@ const TabsLayout = () => {
         name="search"
         options={{
           title: "",
+          tabBarAccessibilityLabel: "Search",
           tabBarIcon: ({ color, size }) => (
             <Feather name="search" size={size} color={color} />
           ),
@@ -46,6 +49,7 @@ const TabsLayout = () => {
         name="notifications"
         options={{
           title: "",
+          tabBarAccessibilityLabel: "Notifications",
           tabBarIcon: ({ color, size }) => (
             <Feather name="bell" size={size} color={color} />
           ),
@@ -55,6 +59,7 @@ const TabsLayout = () => {
         name="messages"
         options={{
           title: "",
+          tabBarAccessibilityLabel: "Messages",
           tabBarIcon: ({ color, size }) => (
             <Feather name="mail" size={size} color={color} />
           ),
@@ -64,6 +69,7 @@ const TabsLayout = () => {
         name="profile"
         options={{
           title: "",
+          tabBarAccessibilityLabel: "Profile",
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" size={size} color={color} />
           ),
