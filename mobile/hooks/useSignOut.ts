@@ -5,9 +5,19 @@ export const useSignOut = () => {
   const { signOut } = useClerk();
 
   const handleSignOut = () => {
-    Alert.alert("Logout", "Are you sure you want to logout", [
+    Alert.alert("Logout", "Are you sure you want to logout?", [
       { text: "Cancel", style: "cancel" },
-      { text: "Logout", style: "destructive", onPress: () => signOut() },
+      {
+        text: "Logout",
+        style: "destructive",
+        onPress: async () => {
+          try {
+            await signOut();
+          } catch (error) {
+            Alert.alert("Error", "Failed to sign out. Please try again.");
+          }
+        },
+      },
     ]);
   };
 
