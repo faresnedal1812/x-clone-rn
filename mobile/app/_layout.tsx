@@ -4,9 +4,9 @@ import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import "../global.css";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
-export default function RootLayout() {
-  const queryClient = new QueryClient();
+const queryClient = new QueryClient();
 
+export default function RootLayout() {
   return (
     <ClerkProvider tokenCache={tokenCache}>
       <QueryClientProvider client={queryClient}>

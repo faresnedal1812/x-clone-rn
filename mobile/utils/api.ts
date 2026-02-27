@@ -3,6 +3,10 @@ import { useAuth } from "@clerk/clerk-expo";
 
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 
+if (!API_BASE_URL) {
+  throw new Error("Missing EXPO_PUBLIC_API_URL");
+}
+
 // this will basically create an authenticated api, pass the token into our headers
 const createApiClient = (
   getToken: () => Promise<string | null>,
