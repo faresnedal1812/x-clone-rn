@@ -2,14 +2,16 @@ import { View, Text } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SignOutButton from "@/components/SignOutButton";
+import { useUserSync } from "@/hooks/useUserSync";
 
-const index = () => {
+const HomeScreen = () => {
+  useUserSync();
   return (
     <SafeAreaView className="flex-1">
-      <Text>index</Text>
+      <Text>HomeScreen</Text>
       <SignOutButton />
     </SafeAreaView>
   );
 };
 
-export default index;
+export default HomeScreen;
