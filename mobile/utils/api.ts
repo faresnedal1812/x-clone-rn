@@ -39,8 +39,8 @@ export const useApiClient = (): AxiosInstance => {
 };
 
 export const userApi = {
-  syncUser: (api: AxiosInstance) => api.post("/users/sync"),
-  getCurrentUser: (api: AxiosInstance) => api.get("/users/me"),
+  syncUser: (api: AxiosInstance) => api.post("/api/users/sync"),
+  getCurrentUser: (api: AxiosInstance) => api.get("/api/users/me"),
   updateProfile: (api: AxiosInstance, data: any) =>
-    api.put("/users/profile", data),
+    api.put("/api/users/profile", data),
 };

@@ -1,8 +1,19 @@
 import { useSSO } from "@clerk/clerk-expo";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Alert } from "react-native";
+import * as WebBrowser from "expo-web-browser";
+
+export const useWarmUpBrowser = () => {
+  useEffect(() => {
+    void WebBrowser.warmUpAsync();
+    return () => {
+      void WebBrowser.coolDownAsync();
+    };
+  }, []);
+};
 
 export const useSocialAuth = () => {
+  useWarmUpBrowser();
   const [isLoading, setIsLoading] = useState(false);
   const { startSSOFlow } = useSSO();
 
