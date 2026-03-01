@@ -1,9 +1,5 @@
 import { useApiClient } from "@/utils/api";
-import {
-  queryOptions,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
@@ -38,7 +34,7 @@ export const useCreatePost = () => {
         } as any);
       }
 
-      api.post("/posts", formData, {
+      return api.post("/posts", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -46,7 +42,7 @@ export const useCreatePost = () => {
     },
     onSuccess: () => {
       setContent("");
-      setSelectedImage("");
+      setSelectedImage(null);
       queryClient.invalidateQueries({ queryKey: ["posts"] });
       Alert.alert("Success", "Post created successfully");
     },
@@ -78,7 +74,7 @@ export const useCreatePost = () => {
     const result = useCamera
       ? await ImagePicker.launchCameraAsync(pickerOptions)
       : await ImagePicker.launchImageLibraryAsync({
-          ...queryOptions,
+          ...pickerOptions,
           mediaTypes: ["images"],
         });
 
