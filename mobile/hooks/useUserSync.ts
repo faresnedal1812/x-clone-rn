@@ -16,6 +16,7 @@ export const useUserSync = () => {
 
   useEffect(() => {
     // if user is signed in and user is not synced yet, sync user
+    // idle => the process is not begun
     if (isSignedIn && syncUserMutation.status === "idle") {
       syncUserMutation.mutate();
     }
