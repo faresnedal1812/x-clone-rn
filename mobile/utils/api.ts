@@ -33,6 +33,7 @@ const createApiClient = (
   return api;
 };
 
+// this returns an authenticated api instances
 export const useApiClient = (): AxiosInstance => {
   const { getToken } = useAuth();
   return createApiClient(getToken);
