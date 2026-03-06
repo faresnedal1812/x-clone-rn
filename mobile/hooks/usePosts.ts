@@ -1,10 +1,10 @@
 import { User } from "@/types";
 import { useApiClient, postApi } from "../utils/api";
-import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const usePost = () => {
   const api = useApiClient();
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient;
 
   const {
     data: postsData,

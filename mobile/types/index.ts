@@ -13,7 +13,7 @@ export interface Post {
   createdAt: string;
   user: User;
   likes: string[];
-  comment: Comment[];
+  comments: Comment[];
 }
 
 export interface Comment {
@@ -35,12 +35,12 @@ export interface Notification {
   type: "comment" | "like" | "follow";
   post: {
     _id: string;
-    contnet: string;
+    content: string;
     image?: string;
   };
   comment?: {
     _id: string;
-    contnet: string;
+    content: string;
   };
   createdAt: string;
 }

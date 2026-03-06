@@ -1,7 +1,7 @@
 import { View, Text, ActivityIndicator, TouchableOpacity } from "react-native";
 import React from "react";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { usePost } from "@/hooks/usePost";
+import { usePost } from "@/hooks/usePosts";
 import { Post } from "@/types";
 import PostCard from "./PostCard";
 

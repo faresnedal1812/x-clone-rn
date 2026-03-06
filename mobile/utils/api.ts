@@ -56,7 +56,7 @@ export const postApi = {
   createPost: (api: AxiosInstance, data: CreatePostData) =>
     api.post("/posts", data),
   getUserPosts: (api: AxiosInstance, username: string) =>
-    api.get(`/posts/${username}`),
+    api.get(`/posts/post/${username}`),
   getPosts: (api: AxiosInstance) => api.get("/posts"),
   likePost: (api: AxiosInstance, postId: string) =>
     api.post(`/posts/${postId}/like`),
