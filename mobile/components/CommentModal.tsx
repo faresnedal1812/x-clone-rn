@@ -34,6 +34,7 @@ const CommentModal = ({ selectedPost, onClose }: CommentModalProps) => {
       visible={!!selectedPost}
       animationType="slide"
       presentationStyle="pageSheet"
+      onRequestClose={handleClose}
       className="bg-white"
     >
       {/* Modal Header */}
