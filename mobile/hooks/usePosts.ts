@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const usePost = () => {
   const api = useApiClient();
-  const queryClient = useQueryClient;
+  const queryClient = useQueryClient();
 
   const {
     data: postsData,

@@ -33,11 +33,9 @@ const postSchema = new mongoose.Schema(
   },
 );
 
-postSchema.pre("validate", function (next) {
-  if (!this.content && !this.image) {
-    next(new Error("Post must have either text or image"));
-  } else {
-    next();
+postSchema.pre("validate", function () {
+  if (!this.content.trim() && !this.image) {
+    this.invalidate("content", "Post must have either text or image");
   }
 });
 
