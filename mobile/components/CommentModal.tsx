@@ -137,7 +137,7 @@ const CommentModal = ({ selectedPost, onClose }: CommentModalProps) => {
               <TouchableOpacity
                 onPress={() => createComment(selectedPost._id)}
                 disabled={isCreatingComment || !contentText.trim()}
-                className={`px-4 py-2 rounded-lg ${contentText.trim() ? "bg-blue-500" : "bg-gray-300"}`}
+                className={`px-4 py-2 self-start rounded-lg ${contentText.trim() ? "bg-blue-500" : "bg-gray-300"}`}
               >
                 {isCreatingComment ? (
                   <ActivityIndicator size={"small"} color={"white"} />
