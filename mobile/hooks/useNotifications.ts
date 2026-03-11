@@ -19,9 +19,9 @@ export const useNotifications = () => {
 
   const deleteNotificationMutation = useMutation({
     mutationFn: (notificationId: string) =>
-      api.get(`/notifications/${notificationId}`),
+      api.delete(`/notifications/${notificationId}`),
     onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ["notification"] }),
+      queryClient.invalidateQueries({ queryKey: ["notifications"] }),
   });
 
   const deleteNotification = (notificationId: string) => {
