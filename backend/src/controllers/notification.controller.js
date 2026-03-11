@@ -9,8 +9,8 @@ export const getNotifications = asyncHandeler(async (req, res) => {
   const user = await User.findOne({ clerkId: userId });
   if (!user) return res.status(404).json({ error: "User not found" });
 
-  const notifications = await Notification.find({ user: user._id })
-    .sort({ ceratedAt: -1 })
+  const notifications = await Notification.find({ to: user._id })
+    .sort({ createdAt: -1 })
     .populate("user", "username firstName lastName profilePicture")
     .populate("post", "content image")
     .populate("comment", "content");
