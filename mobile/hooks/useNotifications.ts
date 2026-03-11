@@ -42,17 +42,29 @@ export const useNotifications = () => {
     onMutate: async (notificationId: string) => {
       // Optimistic update
       await queryClient.cancelQueries({ queryKey: ["notifications"] });
-      const previousNotifications = queryClient.getQueryData(["notifications"]);
-      queryClient.setQueryData(["notifications"], (old: Notification[]) =>
-        old?.filter((notification) => notification._id !== notificationId),
+      const previousNotifications =
+        queryClient.getQueryData<NotificationResponse>(["notifications"]);
+      queryClient.setQueryData<NotificationResponse>(
+        ["notifications"],
+        (old) => {
+          if (!old) return old;
+          return {
+            ...old,
+            notifications: old.notifications.filter(
+              (notification) => notification._id !== notificationId,
+            ),
+          };
+        },
       );
       return { previousNotifications };
     },
-    onError: (error, notificationId, context) => {
-      queryClient.setQueryData(
-        ["notifications"],
-        context?.previousNotifications,
-      );
+    onError: (_error, _notificationId, context) => {
+      if (context?.previousNotifications) {
+        queryClient.setQueryData(
+          ["notifications"],
+          context.previousNotifications,
+        );
+      }
     },
     onSuccess: () =>
       queryClient.invalidateQueries({ queryKey: ["notifications"] }),
