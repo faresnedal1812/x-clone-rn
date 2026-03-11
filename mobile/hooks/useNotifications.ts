@@ -3,7 +3,6 @@ import { useApiClient } from "@/utils/api";
 import { Notification } from "@/types";
 
 interface NotificationResponse {
-  data: any;
   notifications: Notification[];
 }
 
@@ -17,7 +16,7 @@ export const useNotifications = () => {
     isLoading,
     refetch,
     isRefetching,
-  } = useQuery<NotificationResponse>({
+  } = useQuery<NotificationResponse, Error, Notification[]>({
     queryKey: ["notifications"],
     queryFn: async () => {
       try {
@@ -27,7 +26,7 @@ export const useNotifications = () => {
         throw new Error(`Failed to fetch notifications: ${error}`);
       }
     },
-    select: (response) => response.data.notifications,
+    select: (response) => response.notifications,
     retry: 2,
     staleTime: 5 * 60 * 1000,
   });
