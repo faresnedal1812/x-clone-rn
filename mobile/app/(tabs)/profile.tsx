@@ -126,7 +126,10 @@ const ProfileScreen = () => {
             <View className="flex-row items-center gap-1 mb-1">
               <Feather name="calendar" size={16} color={"#657786"} />
               <Text className="text-gray-500">
-                Joined {format(new Date(currentUser.createdAt), "MMMM yyyy")}
+                Joined{" "}
+                {currentUser.createdAt
+                  ? format(new Date(currentUser.createdAt), "MMMM yyyy")
+                  : "Unknown"}
               </Text>
             </View>
             <View className="flex-row items-center gap-6 mb-1">

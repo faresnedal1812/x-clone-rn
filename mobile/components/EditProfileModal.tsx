@@ -44,7 +44,7 @@ const EditProfileModal = ({
       <View className="border-b border-gray-100">
         <View className="px-4 py-3 flex-row justify-between items-center">
           <TouchableOpacity onPress={onClose}>
-            <Text className="text-blue-500">Cancle</Text>
+            <Text className="text-blue-500">Cancel</Text>
           </TouchableOpacity>
           <Text className="text-lg font-semibold text-gray-900">
             Edit Profile

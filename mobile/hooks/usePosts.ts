@@ -12,7 +12,7 @@ export const usePost = (username?: string) => {
     error,
     refetch,
   } = useQuery({
-    queryKey: username ? ["userPosts"] : ["posts"],
+    queryKey: username ? ["userPosts", username] : ["posts"],
     queryFn: () =>
       username ? postApi.getUserPosts(api, username) : postApi.getPosts(api),
     select: (response) => response.data.posts,
